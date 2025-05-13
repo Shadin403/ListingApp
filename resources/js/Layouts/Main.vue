@@ -7,7 +7,7 @@ import { switchTheme } from "../theme";
         <nav
             class="flex items-center justify-between max-w-screen-lg p-6 mx-auto"
         >
-            <Link :href="route('home')">Home</Link>
+           
             <!-- <Link :href="route('login')">Login</Link> -->
 
             <div>
