@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Home')->name('home');
-Route::get('/login', function () {
-    return inertia('Auth/Login');
-})->name('login');
+
+
+
+require __DIR__ . '/auth.php';
