@@ -1,5 +1,6 @@
 <script setup>
 import { switchTheme } from "../theme";
+import LavLink from "../Components/NavLink.vue";
 </script>
 
 <template>
@@ -7,8 +8,9 @@ import { switchTheme } from "../theme";
         <nav
             class="flex items-center justify-between max-w-screen-lg p-6 mx-auto"
         >
-            <Link :href="route('home')">Home</Link>
-            <!-- <Link :href="route('login')">Login</Link> -->
+           
+            <lav-link routeName="home">Home</lav-link>
+            <lav-link routeName="login">Login</lav-link>
 
             <div>
                 <button
