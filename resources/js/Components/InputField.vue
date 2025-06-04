@@ -5,7 +5,7 @@ defineProps({
     label: String,
     icon: String,
 
-    placeholer: {
+    placeholder: {
         type: String,
         default: "",
     },
@@ -36,7 +36,7 @@ defineProps({
             <input
                 :type="type"
                 :name="label"
-                :placeholder="placeholer"
+                :placeholder="placeholder"
                 v-model="model"
                 class="block w-full pr-3 text-sm rounded-md pl-9 dark:text-slate-900 border-slate-300 outline-0 focus:ring-1 focus:ring-inset focus:ring-indigo-400 focus:border-indigo-400 placeholder:text-slate-400"
             />

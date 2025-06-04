@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,8 +25,13 @@ class RegisterController extends Controller
             "password" => "required|string|min:8|confirmed",
         ]);
 
+        sleep(3);
+
 
         $user = User::create($credentials);
+
+        //Email Verification
+        event(new Registered($user));
 
         Auth::login($user);
         session()->flash("success", "Successfully Registered");

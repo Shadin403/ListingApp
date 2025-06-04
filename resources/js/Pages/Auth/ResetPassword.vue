@@ -7,15 +7,20 @@ import PrimaryBtn from "../../Components/PrimaryBtn.vue";
 import { useForm, Head } from "@inertiajs/vue3";
 import ErrorMessages from "../../Components/ErroMessages.vue";
 
+const props = defineProps({
+    token: String,
+    email: String,
+});
+
 const form = useForm({
-    name: "",
-    email: "",
+    token: props.token,
+    email: props.email,
     password: "",
     password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route("register"), {
+    form.post(route("password.update"), {
         onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
@@ -25,22 +30,12 @@ const submit = () => {
     <Head title="Register" />
     <Container class="w-1/2">
         <div class="mb-8 text-center">
-            <Title>Register a new account</Title>
-
-            <p>
-                Already have an account?
-                <TextLink routeName="login" label="Login" />
-            </p>
+            <Title>Reset Your Password</Title>
         </div>
 
         <form @submit.prevent="submit" class="space-y-6">
             <ErrorMessages :errors="form.errors" />
-            <input-field
-                label="Name"
-                icon="id-badge"
-                v-model="form.name"
-                placeholder="John Doe"
-            />
+
             <input-field
                 label="Email"
                 icon="at"
@@ -59,12 +54,10 @@ const submit = () => {
                 icon="key"
                 v-model="form.password_confirmation"
             />
-            <p class="text-sm text-slate-500 dark:text-slate-400">
-                by creating an account, you agree to our Terms and Conditions
-                and Privacy Policy
-            </p>
 
-            <primary-btn :disabled="form.processing">Register</primary-btn>
+            <primary-btn :disabled="form.processing"
+                >Reset Password</primary-btn
+            >
         </form>
     </Container>
 </template>

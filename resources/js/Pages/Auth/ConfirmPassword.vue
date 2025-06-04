@@ -14,53 +14,35 @@ defineProps({
 });
 
 const form = useForm({
-    email: "",
     password: "",
-    remember: false,
 });
 
 const submit = () => {
-    form.post(route("login"), {
-        onFinish: () => form.reset("password"),
+    form.post(route("password.confirm"), {
+        onFinish: () => form.reset(),
     });
 };
 </script>
 
 <template>
-    <Head title="Login" />
+    <Head title="Confirm Password" />
     <Container class="lg:w-[400px]">
         <div class="mb-8 text-center">
-            <Title>Login to your account</Title>
-
             <p>
-                Don't have an account?
-                <TextLink routeName="register" label="Register" />
+                This is a secure area of the application. Please confirm your
+                password before continuing.
             </p>
         </div>
+        <ErrorMessages :errors="form.errors" />
 
         <form @submit.prevent="submit" class="space-y-6">
-            <ErrorMessages :errors="form.errors" />
-            <SessionMessagess :status="status" />
-
-            <input-field label="Email" icon="at" v-model="form.email" />
             <input-field
                 label="Password"
                 type="password"
                 icon="key"
                 v-model="form.password"
             />
-
-            <div class="flex items-center justify-between">
-                <check-box name="remember" v-model="form.remember"
-                    >Remember me</check-box
-                >
-                <TextLink
-                    routeName="password.request"
-                    label="Forget Password"
-                />
-            </div>
-
-            <primary-btn :disabled="form.processing">Login</primary-btn>
+            <primary-btn :disabled="form.processing">Confirm</primary-btn>
         </form>
     </Container>
 </template>
