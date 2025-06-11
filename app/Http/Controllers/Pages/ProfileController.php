@@ -54,13 +54,21 @@ class ProfileController extends Controller
 
     public function destroy(Request $request)
     {
+
         $request->validate([
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
-        $user->logout();
+
+        // Logout and destroy session
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Delete user
         $user->delete();
-        return redirect()->route('login')->with('success', 'Password delated');
+
+        return redirect()->route('login')->with('success', 'Your account has been deleted successfully.');
     }
 }

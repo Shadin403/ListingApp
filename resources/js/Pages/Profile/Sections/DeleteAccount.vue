@@ -40,7 +40,7 @@ const submit = () => {
                     label="Password"
                     type="password"
                     icon="key"
-                    v-model="form.current_password"
+                    v-model="form.password"
                     class="w-1/2"
                 />
 
